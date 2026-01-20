@@ -1,0 +1,212 @@
+/* --- CONFIGURAÇÕES DE CORES E VARIÁVEIS --- */
+:root {
+    --focus-bg: #0f172a;
+    --focus-accent: #38bdf8;
+    --break-bg: #2d1a10;
+    --break-accent: #fb923c;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+/* --- ESTILO GLOBAL E TRANSIÇÕES --- */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 2s ease, color 0.5s ease;
+    overflow: hidden;
+}
+
+body.mode-focus { background-color: var(--focus-bg); color: var(--focus-accent); }
+body.mode-break { background-color: var(--break-bg); color: var(--break-accent); }
+
+.app-container { 
+    text-align: center; 
+    z-index: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- TEXTO DE ESTADO --- */
+.status-text {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.6;
+}
+
+/* --- CRONÓMETRO (GRANDE E COMPACTO) --- */
+.time-display {
+    margin-top: -5px;
+    margin-bottom: 15px;
+    font-size: 9rem;
+    font-weight: 800;
+    letter-spacing: -4px;
+    line-height: 1;
+}
+
+/* --- CONFIGURAÇÕES: INPUTS AZUIS E ARREDONDADOS --- */
+.settings-card {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px !important;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+}
+
+.input-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-inline label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.input-inline input {
+    width: 75px;
+    height: 45px;
+    background-color: #1e293b; /* Azul Escuro */
+    border: 2px solid var(--focus-accent);
+    color: var(--focus-accent);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 12px; /* Ligeiramente arredondado */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Reatividade dos inputs no modo pausa */
+body.mode-break .input-inline input {
+    border-color: var(--break-accent);
+    color: var(--break-accent);
+}
+
+.input-inline input:focus {
+    background-color: var(--focus-accent);
+    color: #0f172a;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+/* --- CONTROLOS: BOTÕES IGUAIS E SIMÉTRICOS --- */
+.timer-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.btn-main, .btn-sub {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Cores dos botões em modo FOCO */
+body.mode-focus .btn-main, 
+body.mode-focus .btn-sub {
+    background: var(--focus-accent);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+/* Cores dos botões em modo PAUSA */
+body.mode-break .btn-main, 
+body.mode-break .btn-sub {
+    background: var(--break-accent);
+    color: #2d1a10;
+    box-shadow: 0 4px 15px rgba(251, 146, 60, 0.2);
+}
+
+.btn-main:hover, .btn-sub:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.btn-main:active, .btn-sub:active {
+    transform: scale(0.95);
+}
+
+/* --- MIXER DE SONS --- */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.sound-grid { display: flex; gap: 30px; margin-top: 15px; }
+
+input[type="range"] {
+    appearance: none;
+    background: rgba(255,255,255,0.1);
+    height: 4px;
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* --- FOOTER E LOGOTIPO (180px) --- */
+.app-footer {
+    margin-top: 40px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.footer-logo {
+    width: 180px; /* Logo aumentado */
+    height: auto;
+    transition: transform 1s ease-in-out;
+    opacity: 0.9;
+}
+
+/* Animação de pulsação no footer */
+.pulsing {
+    animation: logoPulse 2s infinite ease-in-out;
+}
+
+body.mode-focus .pulsing { filter: drop-shadow(0 0 20px var(--focus-accent)); }
+body.mode-break .pulsing { filter: drop-shadow(0 0 20px var(--break-accent)); }
+
+@keyframes logoPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* Remove setas do input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
