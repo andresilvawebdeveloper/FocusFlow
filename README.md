@@ -1,7 +1,6 @@
 # 🌊 FocusFlow | Pomodoro & Ambient Mixer
 
 <div align="center">
-  <img src="logo.png" alt="Logo André Silva" width="200">
   
   <p align="center">
     <strong>Uma ferramenta de produtividade premium desenvolvida para programadores.</strong>
