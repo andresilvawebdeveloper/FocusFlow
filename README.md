@@ -39,8 +39,3 @@ Este projeto destaca o uso de **UI/UX imersiva**, utilizando técnicas de **Glas
 ## ✒️ Autor
 
 Projeto idealizado e desenvolvido por **André Silva**.
-
----
-<p align="center">
-  &copy; 2026 FocusFlow - Built with ❤️ and Gemini AI
-</p>
